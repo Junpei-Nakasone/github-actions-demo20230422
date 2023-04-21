@@ -1,0 +1,20 @@
+name: "GitHub Actions demo20230422"
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+permissions:
+    pull-requests: write
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: job-runs-when-pull-requests-created
+              if: github.event_name == 'pull_request'
+              run: echo "job-runs-when-pull-requests-created"
+            - name: some-deployment
+              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+              run: echo "some-deployment"
+
+
